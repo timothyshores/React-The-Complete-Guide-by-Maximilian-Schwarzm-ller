@@ -1,6 +1,7 @@
 import React from 'react';
 
 const CharComponent = props => {
+    console.log('CharComponent', props);
     return (
         <div
             className="CharComponent"
@@ -11,7 +12,7 @@ const CharComponent = props => {
                 margin: '16px',
                 border: '1px solid black'
             }}>
-            <p>CharComponent</p>
+            <p>{props.char}</p>
         </div>
     );
 };
