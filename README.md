@@ -1,3 +1,3 @@
-This repo is my code for the React - The Complete Guide course on Udemy by Maximilian Schwarzmüller
+# React - The Complete Guide (incl Hooks, React Router, Redux)
 
-https://www.udemy.com/react-the-complete-guide-incl-redux/
+Personal notes for the React - The Complete Guide (incl Hooks, React Router, Redux) by Maximilian Schwarzmüller on [Udemy](https://www.udemy.com/react-the-complete-guide-incl-redux/)
