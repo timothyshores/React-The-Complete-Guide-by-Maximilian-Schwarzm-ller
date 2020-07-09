@@ -1,4 +1,4 @@
-**Summary:** This repo is my personal notes for the [React - The Complete Guide (incl Hooks, React Router, Redux) by Maximilian Schwarzmüller on Udemy](https://www.udemy.com/react-the-complete-guide-incl-redux/)
+_This repo is my personal notes for [Maximilian Schwarzmüller's React course on Udemy](https://www.udemy.com/react-the-complete-guide-incl-redux/)_
 
 <!--ts-->
 
@@ -6,6 +6,29 @@
 
 - [Introduction](#Introduction)
   - [Refactoring HTML and CSS to React](#Refactoring-HTML-and-CSS-to-React)
+- [Next Generation JavaScript](#Next-Generation-JavaScript)
+  - [Keywords let vs const](#Keywords-let-vs-const)
+  - [Arrow Functions](#Arrow-Functions)
+  - [Exports & Imports](#Exports--Imports)
+  - [Classes](#Classes)
+  - [Classes, Properties and Methods](#Classes-Properties-and-Methods)
+  - [Spread and Rest Operators](#Spread-and-Rest-Operators)
+  - [Destructuring](#Destructuring)
+    - [Arrays](#Arrays)
+    - [Objects](#Objects)
+  - [Reference and Primitive Types](#Reference-and-Primitive-Types)
+  - [Array Functions](#Array-Functions)
+- [Basics](#Basics)
+- [Debugging](#Debugging)
+- [Styling](#Styling)
+- [Components](#Components)
+- [HTTP Requests](#HTTP-Requests)
+- [Routing](#Routing)
+- [Forms and validation](#Forms-and-validation)
+- [Redux](#Redux)
+- [Authentication](#Authentication)
+- [Testing](#Testing)
+- [Deploy -->](#Deploy)
 
 # Introduction
 
@@ -79,3 +102,323 @@ ReactDOM.render(App, document.querySelector("#root"));
 ```
 
 ![Example 1 - Refactored into React](/images/1_introduction/2.png)
+
+By refactoring the original HTML and CSS into React code we can simply pass in the name and age properties into the `<Person>` component and React will renders these as `<h1>` and `<p>` elements inside of a `<div>` element like in the previous example exceot we no longer have to repeat the same HTML elements in our HTML file.
+
+# Next Generation JavaScript
+
+React is written using features from ES6 and beyond. Below is a quick refresher on ES6 and ES7 features that are frequently seen in React applications.
+
+## Keywords let vs const
+
+The keywords let and const are new keywords for declaring a variable in JavaScript. Use let if you want to reassign the variable and use const if you do not want to reassign the variable.
+
+## Arrow Functions
+
+Old syntax for declaring a function
+
+```javascript
+function myFnc() {
+    ...
+}
+```
+
+Can be rewritten as
+
+```javascript
+const myFnc = () => {
+    ...
+}
+```
+
+Arrow function syntax fixes the issue with the `this` keyword in Javascript.
+
+If a function is a single line return statement you can remove the `{}` and the `return` keyword. If a function only accepts one arguement then you can remove the `()`.
+
+As an example
+
+```javascript
+const increment = num => {
+  return (num = num + 1);
+};
+```
+
+Can be refactored to
+
+```javascript
+const increment = num => num++;
+```
+
+## Exports & Imports
+
+---
+
+Javascript code can be split up between multiple files. This ensures that each Javascript file is manageable and makes it easier to split up work between a team.
+
+Including the `default` keyword in your export will allow the file to be renamed when it is imported into another Javascript file. In this example we're exporting a person object from `person.js` and importing it into `app.js`.
+
+**person.js**
+
+```javascript
+const person = {
+  name: "Tim"
+};
+
+export default person;
+```
+
+**app.js**
+
+```javascript
+import person from "./person.js";
+import p from "./person.js";
+```
+
+---
+
+A named export does not include the `default` keyword and is imported using `{}`. In this example we're exporting a person object from `person.js` and importing it into `app.js`. Since there's no default we need to tell Javascript what we're specifically referring to.
+
+**utility.js**
+
+```javascript
+export const increment = num => num++;
+```
+
+**app.js**
+
+```javascript
+import { increment } from "./utility.js";
+```
+
+You can assign an alias by using the `as` keyword. For example in our `app.js` file we could import `increment` as `inc` with the following import statement.
+
+```javascript
+import { increment as inc } from "./utility.js";
+```
+
+You can import everything from a given JavaScript file using `*`
+
+```javascript
+import * as utils from "./utility.js";
+```
+
+---
+
+## Classes
+
+Syntax for declaring a class
+
+```javascript
+class Person {
+  constructor() {
+    this.name = "Tim";
+  }
+  printName() {
+    console.log(this.name);
+  }
+}
+```
+
+Syntax for instantiating a class
+
+```javascript
+const person = new Person();
+person.printName();
+```
+
+New classes can inherit properties and methods from existing classes
+
+```javascript
+class Child extends Parent
+```
+
+## Classes, Properties and Methods
+
+Declaring properties in ES6
+
+```javascript
+constructor() {
+    this.myProperty = 'value'
+}
+```
+
+Declaring properties in ES7+
+
+```javascript
+myProperty = "value";
+```
+
+Declaring methods in ES6
+
+```javascript
+myMethod() { ... }
+```
+
+Declaring methods using arrow functions in ES7+ abstracts away the `this` keyword.
+
+```javascript
+myMethod = () => { ... }
+```
+
+This course will use ES7+ syntax to declare properties and methods in classes.
+
+**ES6 Classes**
+
+```javascript
+class Mammal {
+  constructor() {
+    this.gender = "male";
+  }
+
+  printGender() {
+    console.log(this.gender);
+  }
+}
+
+class Human extends Mammal {
+  constructor() {
+    super(); // inherit Mammal constructor and printGender method
+    this.name = "Tim";
+    this.gender = "male";
+  }
+
+  printName() {
+    console.log(this.name);
+  }
+}
+```
+
+This can be refactored into ES7+ resulting in the following
+
+```javascript
+class Mammal {
+  gender = "male";
+  printGender = () => console.log(this.gender);
+}
+
+class Human extends Mammal {
+  name = "Tim";
+  gender = "male";
+  printName = () => console.log(this.name);
+}
+```
+
+## Spread and Rest Operators
+
+Syntax is 3 consecutive dots like this `...`
+
+Spread operator is used to split up array elements or object properties.
+
+**Spread operator examples**
+
+```javascript
+const oldArray = [1, 2, 3];
+const newArray = [...oldArray, 4];
+console.log(newArray); // returns [1, 2, 3, 4]
+
+const oldObj = { name: "Tim" };
+const newObj = { ...oldObj, age: 31 };
+console.log(newObj); // returns { name: 'Tim', age: 31 }
+```
+
+Rest operator is used to merge a list of function arguments into an array
+
+**Rest operator examples**
+
+```javascript
+function sortArgs(...args) {
+  return args.sort(); // .sort() is a built in function for arrays
+}
+
+const evens(...args) => args.filter(num => num % 2 === 0);
+```
+
+The function `sortArgs` can receive any number of arguments.
+
+## Destructuring
+
+### Arrays
+
+```javascript
+const array = ["Hello", "World"];
+[str1, str2] = array;
+console.log(str1); // 'Hello'
+console.log(str2); // 'World'
+```
+
+### Objects
+
+```javascript
+const person = {name: 'Tim', age: 31};
+{name, age, gender} = person;
+console.log(name); // 'Tim'
+console.log(age); // 31
+console.log(gender); // undefined
+```
+
+## Reference and Primitive Types
+
+Numbers, strings and booleans and primitive data types while objects and arrays are reference types.
+
+```javascript
+let num1 = 1;
+const num2 = num1;
+num1 = 2;
+console.log(num2); // 1
+```
+
+**Explaination:** num2 creates a copy of the number 1 since numbers are primitive data types. When num2 is console logged it returns 1.
+
+```javascript
+const obj1 = { name: "Tim" };
+const obj2 = obj1;
+obj1.name = "Max";
+console.log(obj2); // { name: "Max" }
+```
+
+**Explaination:** obj2 refers a pointer in memory to obj1 since objects are reference data types. When obj2 is console logged it returns Max since it is pointing to obj1.
+
+If we want to create a copy of `obj1` into `obj2` we can spread in the properties of `obj1` into `obj2`.
+
+```javascript
+const obj1 = { name: "Tim" };
+const obj2 = { ...obj1 };
+obj1.name = "Max";
+console.log(obj2); // { name: "Tim" }
+```
+
+## Array Functions
+
+Built in JavaScript array functions include `.filter()`, `.sort()`, `.map()`, `.reduce()` and more.
+
+`.map()` preforms a function on every element in a given array
+
+```javascript
+const arr = [1, 2, 3];
+const doubleEachNumber = arr.map(num => num * 2);
+console.log(arr); // [1, 2, 3]
+console.log(doubleEachNumber([1, 2, 3])); // [2, 4, 6]
+```
+
+<!--
+# Basics
+
+# Debugging
+
+# Styling
+
+# Components
+
+# HTTP Requests
+
+# Routing
+
+# Forms and validation
+
+# Redux
+
+# Authentication
+
+# Testing
+
+# Deploy -->
