@@ -28,7 +28,7 @@ _This repo is my personal notes for [Maximilian Schwarzmüller's React course on
 - [Redux](#Redux)
 - [Authentication](#Authentication)
 - [Testing](#Testing)
-- [Deploy -->](#Deploy)
+- [Deploy](#Deploy)
 
 # Introduction
 
@@ -400,8 +400,24 @@ console.log(arr); // [1, 2, 3]
 console.log(doubleEachNumber([1, 2, 3])); // [2, 4, 6]
 ```
 
-<!--
 # Basics
+
+A build workflow is coding in a local text editor application such as VS Code on your own machine rather than in the browser on websites such as CodePen. In real applications you want to ship code that is as small and optimized as possible using the latest features in Javascript, linting and CSS prefixes.
+
+**Requirements**
+
+- Depdenency management tool such with npm or yarn
+- Bundler such with webpack
+- Next generation Javascript compiler such with babel
+- Use a development server with live server or a hot reload
+
+Install Node.js from [nodejs.org](https://nodejs.org/en/) and then run the following commands in the terminal
+
+```terminal
+npx create-react-app react-complete-guide
+cd react-complete-guide
+npm start
+```
 
 # Debugging
 
@@ -421,4 +437,4 @@ console.log(doubleEachNumber([1, 2, 3])); // [2, 4, 6]
 
 # Testing
 
-# Deploy -->
+# Deploy
