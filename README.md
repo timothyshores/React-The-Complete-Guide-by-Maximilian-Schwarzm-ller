@@ -19,6 +19,8 @@ _This repo is my personal notes for [Maximilian Schwarzmüller's React course on
   - [Reference and Primitive Types](#Reference-and-Primitive-Types)
   - [Array Functions](#Array-Functions)
 - [Basics](#Basics)
+  - [JSX](#JSX)
+  - [Functional Components](#Functional-Components)
 - [Debugging](#Debugging)
 - [Styling](#Styling)
 - [Components](#Components)
@@ -418,6 +420,101 @@ npx create-react-app react-complete-guide
 cd react-complete-guide
 npm start
 ```
+
+This will create the directory [react-complete-guide](./react-complete-guide/) along with subfolders and files including `.gitignore`, `package.json`, `README.md` and `yarn.lock`.
+
+React applications are mounted in [public/index.html](./react-complete-guide/public/index.html). On line 31 in `<div id="root"></div>`. This is done in the [src/index.js](react-complete-guide/src/index.js) file on lines 7 - 12.
+
+```javascript
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+```
+
+React components are like custom HTML elements that are used to build a React application. Every component is required to render HTML to the Document Object Model (DOM).
+
+In [src/App.js](react-complete-guide/src/App.js) the following functions are equivalent
+
+```javascript
+const App = () => (
+  <div className="App">
+    <h1>My React App</h1>
+  </div>
+);
+```
+
+```javascript
+const App = () =>
+  React.createElement(
+    "div",
+    { className: "App" },
+    React.createElement("h1", null, "My React App")
+  );
+```
+
+The previous example is clearly more concise and easier to read. This is how your React code gets commpiled and works under the hood.
+
+## JSX
+
+JSX is Javascript like syntax but certain words are reserved such as `class` which needs to be written as `className` in JSX. It avoids the need to write React.createElement every time that you want to create a new element and instead allows you to write to short hand notation instead. Under the hood it compiles down to a deeply nested React.createElement function call.
+
+JSX is syntactic sugar for Javascript.
+
+JSX needs to have a single root element.
+
+The following is **not** allowed.
+
+```jsx
+const App = () =>
+  return (
+    <h1>My React App</h1>
+    <h2>Subtitle</h2>
+  );
+```
+
+The following is allowed.
+
+```jsx
+const App = () =>
+  return(
+    <div>
+      <h1>My React App</h1>
+      <h2>Subtitle</h2>
+    <div>
+  );
+```
+
+## Functional Components
+
+Components are Uppercase. If you were to create a component that displayed a card then the file would be Card.js and typically this would be located in a `/Card/` directory.
+
+A React component is simply a Javascript function that returns JSX.
+
+`src/Card/Card.js`
+
+```jsx
+import React from "react";
+
+const Card = () => {
+  return <p>Card</p>;
+};
+```
+
+`src/App.js`
+
+```jsx
+import React from "react";
+import Card from "./Card/Card";
+
+const App = () => {
+  return <Card />;
+};
+```
+
+Lowercase component names are reversed for html keywords such as `<div>`, `<h1>`, `<a href>`, etc. while uppercase component names are reversed for React components such as `<Card />` or `<Container />`. Self Closing Tags are component without elements or other components nested inside.
 
 # Debugging
 
