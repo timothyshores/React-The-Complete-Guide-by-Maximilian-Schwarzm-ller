@@ -26,16 +26,7 @@ _This repo is my personal notes for [Maximilian Schwarzmüller's React course on
   - [State](#State)
   - [Event Handlers](#Event-Handlers)
   - [React Hooks](#React-Hooks)
-- [Debugging](#Debugging)
-- [Styling](#Styling)
-- [Components](#Components-1)
-- [HTTP Requests](#HTTP-Requests)
-- [Routing](#Routing)
-- [Forms and validation](#Forms-and-validation)
-- [Redux](#Redux)
-- [Authentication](#Authentication)
-- [Testing](#Testing)
-- [Deploy](#Deploy)
+- [React Hooks](#React-Hooks-1)
 
 # Introduction
 
@@ -703,22 +694,12 @@ const App = () => {
 
 useState can be called multiple times in a React component. One state might be a boolean value for whether or not to display a dark mode theme while the other useState might contain the data to be displayed on the page.
 
-# Debugging
+# React Hooks
 
-# Styling
+React hooks allow us to work with components in a more efficient manner. Prior to hooks functional components were exclusively for presentation only and were unable to hold any state or contain any logic.
 
-# Components
+Previously all business logic would be contained in class based components that contain state. Hooks are highly reusable and independent from each component. Hooks eliminate the need for lifecycle methods such as componentDidMount or componentDidUpdate.
 
-# HTTP Requests
+Hooks allow any class based component to be refactored into functional components by utilizing React hooks. Hooks replace state management and lifecycle hooks. Hooks are Javascript functions that can only be used within a functional React component or from within another react hook.
 
-# Routing
-
-# Forms and validation
-
-# Redux
-
-# Authentication
-
-# Testing
-
-# Deploy
+The syntax for React hooks is `useFunctionName()` where FunctionName is the name of your function. Some examples of built in hooks are `useState()` and `useEffect()`.
