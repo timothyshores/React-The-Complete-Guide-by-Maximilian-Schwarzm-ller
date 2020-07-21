@@ -27,6 +27,7 @@ _This repo is my personal notes for [Maximilian Schwarzmüller's React course on
   - [Event Handlers](#Event-Handlers)
   - [React Hooks](#React-Hooks)
 - [React Hooks](#React-Hooks-1)
+  - [Project](#Project)
 
 # Introduction
 
@@ -703,3 +704,13 @@ Previously all business logic would be contained in class based components that 
 Hooks allow any class based component to be refactored into functional components by utilizing React hooks. Hooks replace state management and lifecycle hooks. Hooks are Javascript functions that can only be used within a functional React component or from within another react hook.
 
 The syntax for React hooks is `useFunctionName()` where FunctionName is the name of your function. Some examples of built in hooks are `useState()` and `useEffect()`.
+
+## Project
+
+Notice that in [/projects/hooks-01-starting-project](/projects/hooks-01-starting-project) the entire starter React app is built using functional components only and does not contain any class based components.
+
+In [/src/components/Ingredients/IngredientForm.js](projects/hooks-01-starting-project/src/components/Ingredients/IngredientForm.js) we will bind the `<input>` element to local component state inside the functional component IngredientForm.
+
+```javascript
+import React, { useState } from "react";
+```
