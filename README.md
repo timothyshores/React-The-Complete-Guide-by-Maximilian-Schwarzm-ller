@@ -20,10 +20,15 @@ _This repo is my personal notes for [Maximilian Schwarzmüller's React course on
   - [Array Functions](#Array-Functions)
 - [Basics](#Basics)
   - [JSX](#JSX)
+  - [Components](#Components)
   - [Functional Components](#Functional-Components)
+  - [Props](#Props)
+  - [State](#State)
+  - [Event Handlers](#Event-Handlers)
+  - [React Hooks](#React-Hooks)
 - [Debugging](#Debugging)
 - [Styling](#Styling)
-- [Components](#Components)
+- [Components](#Components-1)
 - [HTTP Requests](#HTTP-Requests)
 - [Routing](#Routing)
 - [Forms and validation](#Forms-and-validation)
@@ -487,6 +492,12 @@ const App = () =>
   );
 ```
 
+## Components
+
+Components are useful to avoid writing a monolith App.js file. Each file is small, manageable and easy to main. It makes it easier to work on teams of developers verses a single developer working within a sinle App.js file.
+
+Components are reusable. Simple call a component again anywhere within the React app.
+
 ## Functional Components
 
 Components are Uppercase. If you were to create a component that displayed a card then the file would be Card.js and typically this would be located in a `/Card/` directory.
@@ -515,6 +526,182 @@ const App = () => {
 ```
 
 Lowercase component names are reversed for html keywords such as `<div>`, `<h1>`, `<a href>`, etc. while uppercase component names are reversed for React components such as `<Card />` or `<Container />`. Self Closing Tags are component without elements or other components nested inside.
+
+Components can also render content dynamically. The following component will create a `<p>` tag with the word Score: followed by a random number between o to 100.
+
+```jsx
+import React from "react";
+
+const Card = () => {
+  return <p>Score: {Math.floow(Math.randon() * 100)}0</p>;
+};
+```
+
+Notice that the Javascript portion of the component is wrapped in `{}` braces to tell the Javascript compile to run the code and display the results rather than display the code in the card.
+
+Components can also be configured based on the properties or props that they receive.
+
+## Props
+
+Props are like HTML attributes but for React components instead of HTML elements. HTML attributes are like `href=""` for `<a>` tags or `src=""` for `<img>` tags.
+
+Props is the short hand version of the word properties for a React component.
+
+`src/App.js`
+
+```jsx
+import React from "react";
+import Card from "./Card/Card";
+
+const App = () => {
+  return <Card name="Tim" age=31" />;
+};
+```
+
+`src/Card/Card.js`
+
+```jsx
+import React from "react";
+
+const Card = props => {
+  return (
+    <p>
+      My name is {props.name} and I am {props.age} years old.
+    </p>
+  );
+};
+```
+
+This app will create an HTML page with the string "My name is Tim and I am 31 years old" wrapped inside a `<p>` tag.
+
+Children is any text that is wrapped by a React component.
+
+`src/App.js`
+
+```jsx
+import React from "react";
+import Card from "./Card/Card";
+
+const App = () => {
+  return <Card name="Tim" age=31">This is a children prop</Card>;
+};
+```
+
+`src/Card/Card.js`
+
+```jsx
+import React from "react";
+
+const Card = props => {
+  return (
+    <p>To access children use the reserved children prop: {props.children}</p>
+  );
+};
+```
+
+## State
+
+Used to change a React component based from within rather than from the parent component passing down props.
+
+In class based components
+
+```jsx
+import React, {Component} from 'react';
+
+class App extends Component: {
+  state: {
+    name: 'Tim',
+    age: '31'
+  }
+
+  render() {
+      return <Card name={this.state.name} age={this.state.age} />
+  }
+}
+```
+
+If the state were to change in this example then React would rerender the DOM and refresh the name or age based on the state change.
+
+## Event Handlers
+
+```jsx
+import React, {Component} from 'react';
+
+class App extends Component: {
+  handleClick = () => console.log('Clicked')
+
+  render() {
+      return <button onClick={this.handleClick}>
+  }
+}
+```
+
+If we include `()` in `onClick={this.handleClick}` like `onClick={this.handleClick()}` then Javascript would immediately execute the function and will console log 'Clicked' when initially rendered. In order to prevent that behavior we simply pass a reference to the function using the syntax `onClick={this.handleClick}`.
+
+```jsx
+import React, {Component} from 'react';
+
+class App extends Component: {
+  state = {
+    people: [
+      {name: 'Tim', age: 31},
+      {name: 'Max', age: 28}
+    ]
+  }
+  switchPeopleHandler = () => {
+    this.setState(people:[
+      {name: 'Max', age: 28},
+      {name: 'Tim', age: 31}
+    ])
+  };
+
+  render() {
+      return (
+          <>
+            <Card name={this.state.people[0].name} age={this.state.people[0].age} />
+            <Card name={this.state.people[1].name} age={this.state.people[1].age} />
+            <button onClick={this.switchPeopleHandler}><button>
+          </>
+      );
+  }
+}
+```
+
+## React Hooks
+
+Hooks are simply a collection of functions that can be used inside of a functional components released in React 16.8.
+
+```jsx
+import React, { useState } from "react";
+
+const App = () => {
+  const [peopleState, setPeopleState] = useState(
+    {
+      people: [{ name: "Tim", age: 31 }, { name: "Max", age: 28 }]
+    },
+    []
+  );
+
+  const switchPeopleHandler = () => {
+    this.setPeopleState(
+      {
+        people: [{ name: "Max", age: 28 }, { name: "Tim", age: 31 }]
+      }
+    )
+  };
+
+
+  return (
+    <>
+      <Card name={peopleState.people[0].name} age={peopleState.people[0].age} />
+      <Card name={peopleState.people[1].name} age={peopleState.people[1].age} />
+      <button onClick={switchPeopleHandler}><button>
+    </>
+  );
+};
+```
+
+useState can be called multiple times in a React component. One state might be a boolean value for whether or not to display a dark mode theme while the other useState might contain the data to be displayed on the page.
 
 # Debugging
 
