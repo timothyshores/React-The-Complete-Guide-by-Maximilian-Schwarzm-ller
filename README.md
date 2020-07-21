@@ -714,3 +714,22 @@ In [/src/components/Ingredients/IngredientForm.js](projects/hooks-01-starting-pr
 ```javascript
 import React, { useState } from "react";
 ```
+
+In class based components state was always an object but in functional components with hooks state can be string, number, boolean, etc. Class based components only had a single state object while functional components can have any any finite number of states.
+
+As an example the following state object below can be refactored into two useState calls
+
+**One single state object**
+
+```javascript
+const [state, setState] = useState({ name: "Tim", age: 31 });
+```
+
+**Two seperate states**
+
+```javascript
+const [name, setName] = useState("Tim");
+const [age, setAge] = useState(31);
+```
+
+The later is preferred to avoid erasing the previous state because when React updates state it doesn't simply update one key value pair in an object, it will completely erase the entire state object.
