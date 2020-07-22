@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from "react";
 
-import IngredientForm from './IngredientForm';
-import Search from './Search';
+import IngredientForm from "./IngredientForm";
+import Search from "./Search";
 
-function Ingredients() {
+const Ingredients = () => {
+  const [ingredients, setIngredients] = useState([]);
+
   return (
     <div className="App">
       <IngredientForm />
@@ -14,6 +16,6 @@ function Ingredients() {
       </section>
     </div>
   );
-}
+};
 
 export default Ingredients;

@@ -27,6 +27,8 @@ _This repo is my personal notes for [Maximilian Schwarzmüller's React course on
   - [Event Handlers](#Event-Handlers)
   - [React Hooks](#React-Hooks)
 - [React Hooks](#React-Hooks-1)
+  - [Rules of Hooks](#Rules-of-Hooks)
+  - [useState()](#useState)
   - [Project](#Project)
 
 # Introduction
@@ -701,9 +703,24 @@ React hooks allow us to work with components in a more efficient manner. Prior t
 
 Previously all business logic would be contained in class based components that contain state. Hooks are highly reusable and independent from each component. Hooks eliminate the need for lifecycle methods such as componentDidMount or componentDidUpdate.
 
-Hooks allow any class based component to be refactored into functional components by utilizing React hooks. Hooks replace state management and lifecycle hooks. Hooks are Javascript functions that can only be used within a functional React component or from within another react hook.
+Hooks allow any class based component to be refactored into functional components by utilizing React hooks. Hooks replace state management and lifecycle hooks.
 
 The syntax for React hooks is `useFunctionName()` where FunctionName is the name of your function. Some examples of built in hooks are `useState()` and `useEffect()`.
+
+## Rules of Hooks
+
+- Hook can only be used within a functional React component or from within another react hook.
+  - Hooks can **not** be used in class based components.
+- Hooks must be located at the root level of a component.
+  - Hooks can not be nested inside of functions or in an if state.
+
+## useState()
+
+useState() is an array with two elements. The first element is a pointer to the current state and the second element is a function to update the state. useState() can be called without any arguement and Javascript will just set the initial set to null or undefined.
+
+```javascript
+const [pointerToState, setPointerToState] = useState();
+```
 
 ## Project
 
@@ -733,3 +750,18 @@ const [age, setAge] = useState(31);
 ```
 
 The later is preferred to avoid erasing the previous state because when React updates state it doesn't simply update one key value pair in an object, it will completely erase the entire state object.
+
+We will manage the ingredients state in the Ingredients component located in [projects/hooks-01-starting-project/src/components/Ingredients/Ingredients.js](/components/Ingredients/Ingredients.js)
+since the component contains both the form to add ingredients as well as a section to display the ingredients.
+
+Import useState from react
+
+```jsx
+import React, { useState } from "react";
+```
+
+Call useState and create an empty array to store the ingredients.
+
+```javascript
+const [ingredients, setIngredients] = useState([]);
+```
