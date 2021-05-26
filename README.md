@@ -4,36 +4,53 @@ _This repo is my personal notes for [Maximilian Schwarzmüller's React course on
 
 **Table of Contents**
 
-- [Introduction](#Introduction)
-  - [Refactoring HTML and CSS to React](#Refactoring-HTML-and-CSS-to-React)
-- [Next Generation JavaScript](#Next-Generation-JavaScript)
-  - [Keywords let vs const](#Keywords-let-vs-const)
-  - [Arrow Functions](#Arrow-Functions)
-  - [Exports & Imports](#Exports--Imports)
-  - [Classes](#Classes)
-  - [Classes, Properties and Methods](#Classes-Properties-and-Methods)
-  - [Spread and Rest Operators](#Spread-and-Rest-Operators)
-  - [Destructuring](#Destructuring)
-    - [Arrays](#Arrays)
-    - [Objects](#Objects)
-  - [Reference and Primitive Types](#Reference-and-Primitive-Types)
-  - [Array Functions](#Array-Functions)
-- [Basics](#Basics)
-  - [JSX](#JSX)
-  - [Components](#Components)
-  - [Functional Components](#Functional-Components)
-  - [Props](#Props)
-  - [State](#State)
-  - [Event Handlers](#Event-Handlers)
-  - [React Hooks](#React-Hooks)
-- [React Hooks](#React-Hooks-1)
-  - [Rules of Hooks](#Rules-of-Hooks)
-  - [useState()](#useState)
-  - [Project](#Project)
+- [Section 1:  Getting Started](#section-1--getting-started)
+  - [What is React.js](#what-is-reactjs)
+  - [Why React instead of "Just JavaScript"](#why-react-instead-of-just-javascript)
+  - [Components](#components)
+  - [Refactoring HTML and CSS to React](#refactoring-html-and-css-to-react)
+- [Next Generation JavaScript](#next-generation-javascript)
+  - [Keywords let vs const](#keywords-let-vs-const)
+  - [Arrow Functions](#arrow-functions)
+  - [Exports & Imports](#exports--imports)
+  - [Classes](#classes)
+  - [Classes, Properties and Methods](#classes-properties-and-methods)
+  - [Spread and Rest Operators](#spread-and-rest-operators)
+  - [Destructuring](#destructuring)
+    - [Arrays](#arrays)
+    - [Objects](#objects)
+  - [Reference and Primitive Types](#reference-and-primitive-types)
+  - [Array Functions](#array-functions)
+- [Basics](#basics)
+  - [JSX](#jsx)
+  - [Components](#components-1)
+  - [Functional Components](#functional-components)
+  - [Props](#props)
+  - [State](#state)
+  - [Event Handlers](#event-handlers)
+  - [React Hooks](#react-hooks)
+- [React Hooks](#react-hooks-1)
+  - [Rules of Hooks](#rules-of-hooks)
+  - [useState()](#usestate)
+  - [Project](#project)
 
-# Introduction
+# Section 1:  Getting Started
 
-React is a Javascript library for building user interfaces using components. React allows developer to create web application that run in the browser and feel like native mobile apps because web pages do not reload the entire page.
+## What is React.js
+
+React is a client side Javascript library for building modern reactive user interfaces for the web. React allows developer to create web application that run in the browser and feel like native mobile apps because web pages do not reload the entire page. Examples include visiting Netflix and FaceBook in the browser.
+
+Websites use to not be responsive in the early days of the web. Now websites are highly reactive with animations, loading bars, etc. JavaScript runs in the browser on websites that are either currently loading or have finished loading. 
+
+## Why React instead of "Just JavaScript"
+
+JavaScrip  is very verbose. Look at the differnces between [Just JavaScript](section-1-getting-started/just-js) and [React ](section-1-getting-started/react).
+
+React eliminates low level code of creating  HTML elements, assigning CSS class names, text content and adding event listeners. It makes it easier to build modern reactive UIs without the needfor writing low level JavaScript code.
+
+React is built on the idea of splitting your application into small building blocks which are called components. 
+
+## Components
 
 Every webpage can be divided and subdivided into different components such as headers, navbars, search bars, filters, bodies, columns, cards, titles, avatars, code snippets and footers. This keeps code manageable and easier to work in front end teams. React components can be reused and repurposed. React components can be thought of as custom HTML elements.
 
